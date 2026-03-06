@@ -24,7 +24,7 @@ WORKDIR /
 COPY requirements.txt .
 
 # Устанавливаем Python-пакеты
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir --force-reinstall -r requirements.txt
 
 # Копируем остальной код приложения
 COPY . .
