@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Устанавливаем рабочую директорию
-WORKDIR /app
+WORKDIR /
 
 # Копируем файл с Python-зависимостями
 COPY requirements.txt .
