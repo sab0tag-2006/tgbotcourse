@@ -1,22 +1,18 @@
-# Используем официальный образ Python (slim-версия для уменьшения размера)
+# Используем официальный образ Python
 FROM python:3.11-slim
 
-# Устанавливаем системные зависимости, необходимые для pycairo
-# Важно: устанавливаем всё одной командой, чтобы слои были эффективными
+# Устанавливаем системные зависимости для pycairo (исправленная версия)
 RUN apt-get update && apt-get install -y \
-    # Базовые утилиты для сборки
     build-essential \
     pkg-config \
-    # Библиотеки Cairo и его зависимости
     libcairo2 \
     libcairo2-dev \
     libglib2.0-0 \
     libglib2.0-dev \
     libgirepository1.0-dev \
     libpango1.0-dev \
-    libgdk-pixbuf2.0-dev \
+    libgdk-pixbuf-2.0-dev \
     libffi-dev \
-    # Дополнительно: часто требуется для работы с графикой
     libjpeg-dev \
     libpng-dev \
     && rm -rf /var/lib/apt/lists/*
@@ -28,14 +24,13 @@ WORKDIR /app
 COPY requirements.txt .
 
 # Устанавливаем Python-пакеты
-# Флаг --no-cache-dir уменьшает размер образа
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Копируем остальной код приложения
 COPY . .
 
-# Команда для запуска приложения - ЗАМЕНИТЕ НА ВАШУ!
-# Например, если у вас FastAPI: uvicorn main:app --host 0.0.0.0 --port $PORT
-# Если Django: gunicorn yourproject.wsgi:application --bind 0.0.0.0:$PORT
-# Если простой скрипт: python your_app.py
+# Эта переменная не обязательна для бота, но Railway её ожидает
+ENV PORT=8080
+
+# Запускаем бота
 CMD ["python", "bot.py"]
