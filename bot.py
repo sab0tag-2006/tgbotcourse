@@ -15,7 +15,7 @@ from collections import defaultdict
 import time
 
 from aiogram import Bot, Dispatcher, types, F
-from aiogram.client.bot import DefaultBotProperties
+from aiogram.client.default import DefaultBotProperties
 from aiogram.filters import Command, CommandStart
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
