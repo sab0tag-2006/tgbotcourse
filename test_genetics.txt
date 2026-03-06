@@ -1,0 +1,4 @@
+rsid,chromosome,position,genotype
+rs1801133,1,11856378,C/T
+rs9939609,16,53820527,A/T
+rs1815739,11,66560762,R/X
